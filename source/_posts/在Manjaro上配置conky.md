@@ -5,8 +5,10 @@ categories:
 tags: 
   - Linux
 toc: true
----
 
+date: 2022-03-06 00:00:00
+updated: 2022-03-06 00:00:00
+---
 ## 一 下载conky
 
 使用pacman,或者yay，或者使用gnome的商店都可以下载：
@@ -22,16 +24,16 @@ yay -S conky
 
 ## 二 设置开机自启
 
-比如在gnome中工具中设置开机自启，是没有效果的，因为conky需要在系统启动桌面加载好后才启动，因此需要一个延时，因此，在目录`~/.config/autostart/`目录中可以看到很多的开机自启的`desktop`文件，因此只需要新建一个`sh`设置休眠后启动即可：
+比如在gnome中工具中设置开机自启，是没有效果的，因为conky需要在系统启动桌面加载好后才启动，因此需要一个延时，因此，在目录 `~/.config/autostart/`目录中可以看到很多的开机自启的 `desktop`文件，因此只需要新建一个 `sh`设置休眠后启动即可：
 
-1. 在家目录新建一个`conky.sh`
+1. 在家目录新建一个 `conky.sh`
 
 ```sh
 #!/bin/bash
 sleep 5 && conky
 ```
 
-2. 在`~/.config/autostart/`新建一个`dekstop`文件
+2. 在 `~/.config/autostart/`新建一个 `dekstop`文件
 
 ```desktop
 [Desktop Entry]
@@ -119,4 +121,3 @@ $color总计： ${totaldown enp2s0} ${alignr}总计： ${totalup enp2s0}
 #随便写点啥＃
 $alignc ${color #056107}${font :bold:size=5}
 ```
-

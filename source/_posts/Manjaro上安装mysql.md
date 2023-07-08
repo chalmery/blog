@@ -5,8 +5,11 @@ categories:
 tags:
   - Linux
 toc: true
----
 
+
+date: 2022-03-05 00:00:00
+updated: 2022-03-05 00:00:00
+---
 ## 一 下载mysql
 
 无论是使用自带商店，还是pacman,yay都是可以的
@@ -50,4 +53,3 @@ source /etc/profile
 sudo systemctl restart mysqld
 mysql -u root -p 
 ```
-

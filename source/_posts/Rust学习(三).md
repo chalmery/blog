@@ -5,8 +5,11 @@ categories:
 tags: 
   - Rust
 toc: true
----
 
+
+date: 2022-05-15 00:00:00
+updated: 2022-05-15 00:00:00
+---
 ## 1 Struct
 
 结构体实例化的顺序可以不与定义时候一样，但是所有属性都得实例化。结构体实例声明为可变的时候其所有属性都是可变的。
@@ -106,7 +109,7 @@ struct Color(i32,i32,i32);
 
 ### 没有任何字段的Struct
 
-可以定义一个没有任何内容的struct，叫做`Unit-like struct`，可以实现抽象的描述，但是又不需要存储元素内容的场景可以适用。
+可以定义一个没有任何内容的struct，叫做 `Unit-like struct`，可以实现抽象的描述，但是又不需要存储元素内容的场景可以适用。
 
 ### struct的所有权
 
@@ -142,7 +145,7 @@ println!("{}",r)
 
 但如果直接这么打印编译会报错：提示没有实现这个接口，或则使用第二种方法
 
-> = help: the trait `std::fmt::Display` is not implemented for `Rectangle`  
+> = help: the trait `std::fmt::Display` is not implemented for `Rectangle`
 > = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
 
 而当你使用第二种方式打印的话还会报错：
@@ -154,12 +157,12 @@ println!("{:#?}",r) //美化打印
 
 提示你没有时间Debug接口，或者使用这个注解，放在结构体上面，
 
-> = help: the trait `Debug` is not implemented for `Rectangle`  
+> = help: the trait `Debug` is not implemented for `Rectangle`
 > = note: add `#[derive(Debug)]` to `Rectangle` or manually `impl Debug for Rectangle`
 
 ### 方法
 
-方法表示与这个结构体有关的函数，使用关键字`impl`来表示，可以有很多个代码快，除了特别的方法，一般的方法第一个参数总是自己，用`&self`表示,方法调用可以省略自身的引用入参
+方法表示与这个结构体有关的函数，使用关键字 `impl`来表示，可以有很多个代码快，除了特别的方法，一般的方法第一个参数总是自己，用 `&self`表示,方法调用可以省略自身的引用入参
 
 * self 可以是 借用：`&self`，也可以是：`safe`表示获取所有权，也可以是可变的，也就是说和普通的参数没啥区别
 
@@ -185,7 +188,6 @@ fn main() {
 在c/c++中方法调用，是这样的：object->someting() 和 (*object).someting()这两者等价
 
 * object是个指针，星号表示解指针，变为对象
-
 * Rust提供了自动的引用，或者解引用，在调用方法的时候，rust会自动的补上，&，& mut 等，来匹配上方法的入参
 
 关联函数：
@@ -219,7 +221,7 @@ enum IP_ADDRESS{
 }
 ```
 
-标准库的Option<T>枚举包含在预导入模块中的，可以直接使用，其结构为：
+标准库的Option`<T>`枚举包含在预导入模块中的，可以直接使用，其结构为：
 
 ```rust
 pub enum Option<T> {
@@ -263,7 +265,6 @@ fn value_in_cents(coin: Coin) -> u8 {
 
 附带值的模式匹配：
 
-
 ```rust
 #[derive(Debug)] // 这样可以立刻看到州的名称
 enum UsState {
@@ -292,7 +293,7 @@ fn value_in_cents(coin: Coin) -> u8 {
 }
 ```
 
-可以使用占位符`-`来表示其他情况
+可以使用占位符 `-`来表示其他情况
 
 ```rust
     match dice_roll {
@@ -318,4 +319,3 @@ fn main(){
 
 }
 ```
-

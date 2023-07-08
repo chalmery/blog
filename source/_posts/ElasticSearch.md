@@ -5,8 +5,10 @@ categories:
 tags:
   - Java
 toc: true
----
 
+date: 2021-10-01 00:00:00
+updated: 2021-10-01 00:00:00
+---
 # Elasticsearch
 
 ### 一、现存问题
@@ -21,17 +23,17 @@ toc: true
 #### 1.2 ES的介绍（搜索引擎）
 
 > Elasticsearch天生分布式，支持海量数据的存储，什么在大数据领域也有应用。
-> 
+>
 > Elasticsearch采用倒排索引的方式去全文检索数据，亿级数据中检索时间在毫秒级别。
-> 
+>
 > Elasticsearch提供了highlight高亮查询方式
-> 
+>
 > Elasticsearch提供了及其丰富和聚合函数
-> 
+>
 > Elasticsearch基于Java实现，搜索功能是基于先进最流行的Lucene实现……
-> 
+>
 > Elasticsearch本身是一套技术栈，[ELK]()中的一个组件，ELK是收集日志的一套技术栈……
-> 
+>
 > 中文官方地址：https://www.elastic.co/cn/elasticsearch/
 
 ### 二、安装ES&Kibana&IK分词器
@@ -95,15 +97,12 @@ xpack.monitoring.ui.container.elasticsearch.enabled: true
 检测启动是否成功：
 
 - Linux中输入：curl localhost:9200
-  
-  | 成功访问es                                                                             |
-  |:----------------------------------------------------------------------------------:|
+  |                                    成功访问es                                    |
+  | :------------------------------------------------------------------------------: |
   | ![image-20210908144227670](https://img.yangcc.top/img/image-20210908144227670.png) |
-
 - Windows浏览器输入：192.168.41.98:5601
-  
-  | 启动成功                                                                               |
-  |:----------------------------------------------------------------------------------:|
+  |                                     启动成功                                     |
+  | :------------------------------------------------------------------------------: |
   | ![image-20210908144352004](https://img.yangcc.top/img/image-20210908144352004.png) |
 
 #### 2.2 安装IK分词器
@@ -114,36 +113,36 @@ xpack.monitoring.ui.container.elasticsearch.enabled: true
 
 在kibana的dev tools上测试分词器
 
-| 自带分词器对中文支持不好                                                                       |
-|:----------------------------------------------------------------------------------:|
+|                             自带分词器对中文支持不好                             |
+| :------------------------------------------------------------------------------: |
 | ![image-20210908150803352](https://img.yangcc.top/img/image-20210908150803352.png) |
 
 安装IK分词器
 
 下载地址：https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.8.0/elasticsearch-analysis-ik-7.8.0.zip
 
-需要将zip压缩包解压的内容放到elasticsearch容器内部的`/usr/share/elasticsearch/plugins/ik_analyzer/`
+需要将zip压缩包解压的内容放到elasticsearch容器内部的 `/usr/share/elasticsearch/plugins/ik_analyzer/`
 
-修改docker-compose.yml文件，给elasticsearch添加了一个数据卷，映射到`/usr/local/docker/es_docker/plugins`
+修改docker-compose.yml文件，给elasticsearch添加了一个数据卷，映射到 `/usr/local/docker/es_docker/plugins`
 
 将zip压缩包扔到Linux中，并且放到数据库内的ik_analyzer目录里，通过unzip解压，重启elasticsearch容器
 
 再次通过IK分词器进行分词
 
-| IK分词器效果                                                                            |
-|:----------------------------------------------------------------------------------:|
+|                                   IK分词器效果                                   |
+| :------------------------------------------------------------------------------: |
 | ![image-20210908151137092](https://img.yangcc.top/img/image-20210908151137092.png) |
 
 ### 三、ES的存储结构
 
-| 存储数据结构                                                                             |
-|:----------------------------------------------------------------------------------:|
+|                                   存储数据结构                                   |
+| :------------------------------------------------------------------------------: |
 | ![image-20210908153241240](https://img.yangcc.top/img/image-20210908153241240.png) |
 
 > 在ES服务中创建索引，并指定索引的主分片个数，以及备份分片个数。
-> 
+>
 > 给索引设置存储数据的结构
-> 
+>
 > 上述搞定后，可以向索引中添加文件……
 
 ### 四、索引操作
@@ -164,45 +163,39 @@ PUT /book
 #### 4.2 Elasticsearch数据类型
 
 - 字符串类型：
-  
+
   - text：文本类型，一般用于搜索……
   - keyword：关键字，当前值不允许分词……
-
 - boolean类型：
-  
+
   - boolean：没啥说的…………
-
 - 二进制类型：
-  
-  - binary：只支持encoding为Base64格式……
 
+  - binary：只支持encoding为Base64格式……
 - 数值类型：
-  
+
   | `long`          | A signed 64-bit integer with a minimum value of `-263` and a maximum value of `263-1`.         |
-  | --------------- | ---------------------------------------------------------------------------------------------- |
+  | ----------------- | -------------------------------------------------------------------------------------------------- |
   | `integer`       | A signed 32-bit integer with a minimum value of `-231` and a maximum value of `231-1`.         |
   | `short`         | A signed 16-bit integer with a minimum value of `-32,768` and a maximum value of `32,767`.     |
   | `byte`          | A signed 8-bit integer with a minimum value of `-128` and a maximum value of `127`.            |
-  | `double`        | A double-precision 64-bit IEEE 754 floating point number, restricted to finite values.         |
-  | `float`         | A single-precision 32-bit IEEE 754 floating point number, restricted to finite values.         |
-  | `half_float`    | A half-precision 16-bit IEEE 754 floating point number, restricted to finite values.           |
+  | `double`        | A double-precision 64-bit IEEE 754 floating point number, restricted to finite values.             |
+  | `float`         | A single-precision 32-bit IEEE 754 floating point number, restricted to finite values.             |
+  | `half_float`    | A half-precision 16-bit IEEE 754 floating point number, restricted to finite values.               |
   | `scaled_float`  | A floating point number that is backed by a `long`, scaled by a fixed `double` scaling factor. |
-  | `unsigned_long` | An unsigned 64-bit integer with a minimum value of 0 and a maximum value of `264-1`.           |
-
+  | `unsigned_long` | An unsigned 64-bit integer with a minimum value of 0 and a maximum value of `264-1`.             |
 - 时间类型：
-  
+
   - date：代表时间类型，根据format设置格式化方式
-    
+
     ```json
     "format": "yyyy-MM-dd || yyyy-MM-dd HH:mm:ss || strict_date_optional_time || epoch_millis"
     ```
-
 - ip类型：
-  
-  - ip：支持ipv4和ipv6类型
 
+  - ip：支持ipv4和ipv6类型
 - geo类型：
-  
+
   - geo_point：支持经纬度存储……
 
 #### 4.3 创建索引（结构化存储）
@@ -238,18 +231,16 @@ PUT /novel
 
 创建成功，查看效果
 
-|                                                                                    |
-| ---------------------------------------------------------------------------------- |
+|                                                                                  |
+| -------------------------------------------------------------------------------- |
 | ![image-20210908163006480](https://img.yangcc.top/img/image-20210908163006480.png) |
 
 索引构建成功后
 
 - 主分片个数不允许修改……
-
 - 备份分片个数可以随意修改……
-
 - 索引中的属性类型是不允许修改的，但是可以追加属性……
-  
+
   ```json
   PUT /索引/_mapping
   {
@@ -330,16 +321,16 @@ DELETE /novel/_doc/sXVVyHsB4k1tdHs36v4c
 GET /novel/_doc/1
 ```
 
-| 查询返回结果                                                                             |
-| ---------------------------------------------------------------------------------- |
+| 查询返回结果                                                                     |
+| -------------------------------------------------------------------------------- |
 | ![image-20210909102845512](https://img.yangcc.top/img/image-20210909102845512.png) |
 
 ### 六、Java操作ES
 
 > Elasticsearch官方推出了两种Java操作的客户端，采用[Rest-High-Level-Client]()。
-> 
+>
 > 还有另一种与Elasticsearch交互客户端，可以写类似SQL的语句，与Elasticsearch交互。
-> 
+>
 > 还有另一种与Elasticsearch交互客户端，SpringBoot整合的data-elasticsearch。
 
 #### 6.1 Java连接Elasticsearch服务
@@ -450,8 +441,8 @@ public void updateById() throws IOException {
 
 #### 6.5 批量操作
 
-| 批量操作                                                                               |
-|:----------------------------------------------------------------------------------:|
+|                                     批量操作                                     |
+| :------------------------------------------------------------------------------: |
 | ![image-20210909113231519](https://img.yangcc.top/img/image-20210909113231519.png) |
 
 #### 6.6 根据id查询文档
@@ -478,8 +469,8 @@ public void get() throws IOException {
 
 #### 7.1 倒排/反向索引
 
-| 倒排索引                                                                               |
-|:----------------------------------------------------------------------------------:|
+|                                     倒排索引                                     |
+| :------------------------------------------------------------------------------: |
 | ![image-20210909142550809](https://img.yangcc.top/img/image-20210909142550809.png) |
 
 #### 7.2 term查询
@@ -489,15 +480,15 @@ public void get() throws IOException {
 ##### 7.2.1 term查询
 
 > term查询对比MySQL的话，相当于：where column = ？
-> 
+>
 > term就是将用户输入的关键字与ES中的某一个属性做等值比较（当前属性的分词库）。
-> 
+>
 > term不会将用户输入的关键字进行分词，直接拿用户的完整关键字匹配分词库。
-> 
+>
 > term更适合查询keyword类型的属性
 
-| 查询执行流程                                                                             |
-|:----------------------------------------------------------------------------------:|
+|                                   查询执行流程                                   |
+| :------------------------------------------------------------------------------: |
 | ![image-20210909145205115](https://img.yangcc.top/img/image-20210909145205115.png) |
 
 ```json
@@ -517,7 +508,7 @@ POST /sms_logs_index/_search
 ##### 7.2.2 terms查询
 
 > term查询对比MySQL的话，相当于：where column in (?,?,?)
-> 
+>
 > 和terms一致，让用户输入多个关键字去匹配一个属性
 
 ```json
@@ -538,9 +529,9 @@ POST /sms_logs_index/_search
 #### 7.3 match查询
 
 > match查询是使用频率最高的查询方式，match查询的底层还是term查询
-> 
+>
 > match查询会根据查询的field的属性，决定是否将用户输入的关键字进行分词
-> 
+>
 > - 如果field是keyword类型，match查询不会将用户输入的关键字进行分词
 > - 如果field是text类型，match查询会将用户输入的关键字进行分词
 
@@ -586,7 +577,7 @@ POST /sms_logs_index/_search
 ##### 7.3.3 multi_match查询
 
 > 一个值匹配多个Field
-> 
+>
 > 提升ES的查询命中率……
 
 ```json
@@ -605,7 +596,7 @@ POST /sms_logs_index/_search
 #### 7.4 range查询
 
 > range查询可以实现范围检索
-> 
+>
 > 针对数值，时间和IP地址做范围查询
 
 ```json
@@ -617,7 +608,7 @@ POST /sms_logs_index/_search
     "range": {
       "fee": {
         "gte": 1,   
-        "lt": 5     
+        "lt": 5   
       }
     }
   }
@@ -644,7 +635,7 @@ POST /sms_logs_index/_search
     "range": {
       "ipAddr": {
         "gt": "9.126.2.8",
-        "lte": "11.126.2.255"       
+        "lte": "11.126.2.255"     
       }
     }
   }
@@ -746,7 +737,7 @@ POST /sms_logs_index/_search
 #### 8.4 wildcard查询
 
 > 和MySQL中的like查询一样的通配、占位查询，
-> 
+>
 > - MySQL%代表通配，_代表占位
 > - wildcard中*代表通配，？代表占位
 
@@ -783,13 +774,13 @@ POST /sms_logs_index/_search
 ### 九、ES的复合查询
 
 > 基于ES的query查询数据时，暂时只能一个条件一个条件的使用，没有办法将多个条件以一定的逻辑方式组合在一起。
-> 
+>
 > ES也支持查询方式，允许多个条件封装到一起，这种查询叫[bool查询]()
-> 
+>
 > 只要公司项目用ES做全文检索，[100%用bool查询]()
-> 
+>
 > bool查询提供了四种组合方式：
-> 
+>
 > - must：等于MySQL的and
 > - should：等于MySQL的or
 > - must_not：等于MySQL的!
@@ -931,8 +922,8 @@ public class Demo2Test {
 
 提供了丰富的聚合函数在海量数据中做统计
 
-> 想MySQL提供的5种聚合函数，ES都支持……    
-> 
+> 想MySQL提供的5种聚合函数，ES都支持……
+>
 > ES提供的聚合函数特别多，挑几个常用的……
 
 #### 11.1 Extended_stats
@@ -974,7 +965,7 @@ POST /sms_logs_index/_search
 #### 11.3 Range统计
 
 > ES中针对Range范围统计提供了Range，DateRange，IPRange
-> 
+>
 > 可以统计范围内出现数据的数量。
 
 ```json
@@ -1113,10 +1104,10 @@ public class Demo3Test {
 ### 十二、ES的GEO查询
 
 > GEO查询就是基于经纬度做筛选。
-> 
+>
 > 一般经纬度筛选无法计算分数，会将基于GEO的查询统统滴放到filter中。
-> 
-> 创建一个索引，指定一个属性的存储类型是[geo_point]() 
+>
+> 创建一个索引，指定一个属性的存储类型是[geo_point]()
 
 ```json
 # 玩GEO，创建索引
@@ -1170,8 +1161,8 @@ POST /map/_create/3
 
 GEO在ES中提供了三种查询方式
 
-| geo_distance                                                                       |
-|:----------------------------------------------------------------------------------:|
+|                                   geo_distance                                   |
+| :------------------------------------------------------------------------------: |
 | ![image-20210910114724159](https://img.yangcc.top/img/image-20210910114724159.png) |
 
 ```json
@@ -1196,8 +1187,8 @@ POST /map/_search
 }
 ```
 
-| geo_bounding_box                                                                   |
-|:----------------------------------------------------------------------------------:|
+|                                 geo_bounding_box                                 |
+| :------------------------------------------------------------------------------: |
 | ![image-20210910114910950](https://img.yangcc.top/img/image-20210910114910950.png) |
 
 ```json
@@ -1227,8 +1218,8 @@ POST /map/_search
 }
 ```
 
-| geo_polygon                                                                        |
-|:----------------------------------------------------------------------------------:|
+|                                   geo_polygon                                   |
+| :------------------------------------------------------------------------------: |
 | ![image-20210910115101114](https://img.yangcc.top/img/image-20210910115101114.png) |
 
 ```json

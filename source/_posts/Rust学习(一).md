@@ -5,10 +5,10 @@ categories:
 tags: 
   - Rust
 toc: true
+
+date: 2022-03-14 00:00:00
+updated: 2022-03-14 00:00:00
 ---
-
-
-
 ## 一 Rust安装
 
 Rust安装极为简单，先下载rustup
@@ -21,7 +21,7 @@ Rust安装极为简单，先下载rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-在vscode下载插件`rust-analyzer`即可快速开发
+在vscode下载插件 `rust-analyzer`即可快速开发
 
 ![image-20220314220452099](https://img.yangcc.top/img/image-20220314220452099.png)
 
@@ -84,4 +84,4 @@ fn main() {
 
 参考：
 
-[Rust教程]:https://www.bilibili.com/video/BV1hp4y1k7SV?p=8&amp;amp;spm_id_from=pageDriver
+[Rust教程]: https://www.bilibili.com/video/BV1hp4y1k7SV?p=8&spm_id_from=pageDriver
