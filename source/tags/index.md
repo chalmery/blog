@@ -1,5 +1,3 @@
 ---
-title: 标签
-layout: tags
-comments: false
+title: tags
 ---

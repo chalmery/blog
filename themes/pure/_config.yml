@@ -191,7 +191,7 @@ fb_app_id:
 # profile
 profile:
   enabled: true # Whether to show profile bar
-  articleSelfBlock: false # 关闭文章下方的自我介绍
+  articleSelfBlock: true # 关闭文章下方的自我介绍
   avatar: https://img.yangcc.top/avatar/081820198358.jpg
   gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
   author: Yangcc

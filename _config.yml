@@ -5,7 +5,7 @@
 # Site
 title: yangccBlog
 subtitle: ''
-description: ''
+description: 'yangcc 博客'
 keywords:
 author: 杨超超
 language: zh-CN
@@ -97,7 +97,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: pure
+theme: redefine
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
