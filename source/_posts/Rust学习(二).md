@@ -1,7 +1,7 @@
 ---
 title: Rust学习(二)：所有权
 categories:
-  - Rust
+  - 技术
 tags: 
   - Rust
 toc: true

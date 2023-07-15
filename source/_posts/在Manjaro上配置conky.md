@@ -1,7 +1,7 @@
 ---
 title: 在Manjaro上配置conky
 categories:
-  - Linux
+  - 工具
 tags: 
   - Linux
 toc: true

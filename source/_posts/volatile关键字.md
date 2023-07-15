@@ -1,7 +1,7 @@
 ---
 title: Volatile关键字
 categories:
-  - Java
+  - 技术
 tags: 
   - Java
 toc: true
@@ -225,9 +225,9 @@ public class Test4 {
 刚开始是有疑问的，感觉volatile关键字根本没必要呀，其实是为了禁止指令重排，保证 `test4 = new Test4()`顺序执行，创建对象并赋值有如下的虚拟机指令：
 
 ```
-0: new   // 创建一个对象，在堆内开辟空间，并将地址放入虚拟机栈顶              
+0: new   // 创建一个对象，在堆内开辟空间，并将地址放入虚拟机栈顶            
 3: dup   // 复制操作数栈顶值，并将其压入栈顶，也就是说此时操作数栈上有连续相同的两个对象地址；
-4: invokespecial #3 //执行构造方法               
+4: invokespecial #3 //执行构造方法             
 7: astore_1 // 将地址赋值
 ```
 

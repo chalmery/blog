@@ -1,7 +1,7 @@
 ---
 title: Rust学习(一)：猜数字游戏
 categories:
-  - Rust
+  - 技术
 tags: 
   - Rust
 toc: true

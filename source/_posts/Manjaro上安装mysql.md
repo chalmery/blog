@@ -1,7 +1,7 @@
 ---
 title: Manjaro上安装mysql
 categories:
-  - Linux
+  - 工具
 tags:
   - Linux
 toc: true

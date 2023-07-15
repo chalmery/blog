@@ -1,4 +1,8 @@
-月色十里:
+- links_category: 博客
+  has_thumbnail: false
+  list: 
+  - name: yueseshili
     link: https://yueseshili.github.io/
+    description: yueseshili blog
     avatar: https://img.yangcc.top/avatar/lmq.jpg
-    desc: "Moon"
+    thumbnail: 预览图（has_thumbnail 为 true 时才需要）

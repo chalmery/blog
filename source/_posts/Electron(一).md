@@ -1,7 +1,7 @@
 ---
 title: Electron(一)
 categories:
-  - JavaScript
+  - 技术
 tags:
   - JavaScript
   - Electron

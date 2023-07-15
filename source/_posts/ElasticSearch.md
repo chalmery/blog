@@ -1,7 +1,7 @@
 ---
 title: Elasticsearch
 categories:
-  - Java
+  - 技术
 tags:
   - Java
 toc: true
@@ -96,12 +96,10 @@ xpack.monitoring.ui.container.elasticsearch.enabled: true
 
 检测启动是否成功：
 
-- Linux中输入：curl localhost:9200
-  |                                    成功访问es                                    |
+- Linux中输入：curl localhost:9200|                                    成功访问es                                    |
   | :------------------------------------------------------------------------------: |
   | ![image-20210908144227670](https://img.yangcc.top/img/image-20210908144227670.png) |
-- Windows浏览器输入：192.168.41.98:5601
-  |                                     启动成功                                     |
+- Windows浏览器输入：192.168.41.98:5601|                                     启动成功                                     |
   | :------------------------------------------------------------------------------: |
   | ![image-20210908144352004](https://img.yangcc.top/img/image-20210908144352004.png) |
 
@@ -635,7 +633,7 @@ POST /sms_logs_index/_search
     "range": {
       "ipAddr": {
         "gt": "9.126.2.8",
-        "lte": "11.126.2.255"     
+        "lte": "11.126.2.255"   
       }
     }
   }

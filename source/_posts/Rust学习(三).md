@@ -1,7 +1,7 @@
 ---
 title: Rust学习(三)：结构体枚举和模式匹配
 categories:
-  - Rust
+  - 技术
 tags: 
   - Rust
 toc: true
@@ -221,7 +221,7 @@ enum IP_ADDRESS{
 }
 ```
 
-标准库的Option`<T>`枚举包含在预导入模块中的，可以直接使用，其结构为：
+标准库的Option `<T>`枚举包含在预导入模块中的，可以直接使用，其结构为：
 
 ```rust
 pub enum Option<T> {
