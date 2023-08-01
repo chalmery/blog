@@ -2,10 +2,10 @@
 title: 在Manjaro上配置conky
 categories:
   - 工具
-tags: 
+tags:
   - Linux
 toc: true
-
+abbrlink: 503294022
 date: 2022-03-06 00:00:00
 updated: 2022-03-06 00:00:00
 ---

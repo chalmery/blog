@@ -2,10 +2,10 @@
 title: Rust学习(一)：猜数字游戏
 categories:
   - 技术
-tags: 
+tags:
   - Rust
 toc: true
-
+abbrlink: 2690763544
 date: 2022-03-14 00:00:00
 updated: 2022-03-14 00:00:00
 ---

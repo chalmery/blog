@@ -2,11 +2,10 @@
 title: Rust学习(二)：所有权
 categories:
   - 技术
-tags: 
+tags:
   - Rust
 toc: true
-
-
+abbrlink: 2861842578
 date: 2022-05-14 00:00:00
 updated: 2022-05-14 00:00:00
 ---

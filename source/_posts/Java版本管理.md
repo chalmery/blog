@@ -1,11 +1,11 @@
 ---
-title: 规则引擎(一)
+title: Java版本管理
 categories:
   - 工具
-tags: 
+tags:
   - Java
 toc: true
-
+abbrlink: 2427860074
 date: 2023-07-15 00:00:00
 updated: 2023-07-15 00:00:00
 ---

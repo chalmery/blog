@@ -2,11 +2,10 @@
 title: Rust学习(三)：结构体枚举和模式匹配
 categories:
   - 技术
-tags: 
+tags:
   - Rust
 toc: true
-
-
+abbrlink: 379577363
 date: 2022-05-15 00:00:00
 updated: 2022-05-15 00:00:00
 ---

@@ -2,10 +2,10 @@
 title: Volatile关键字
 categories:
   - 技术
-tags: 
+tags:
   - Java
 toc: true
-
+abbrlink: 1069363226
 date: 2021-08-12 00:00:00
 updated: 2021-08-12 00:00:00
 ---
