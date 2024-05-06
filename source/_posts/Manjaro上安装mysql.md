@@ -13,7 +13,7 @@ updated: 2022-03-05 00:00:00
 
 无论是使用自带商店，还是pacman,yay都是可以的
 
-![image-20220312145320693](https://img.yangcc.top/img/image-20220312145320693.png)
+![image-20220312145320693](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/image-20220312145320693.png)
 
 ## 二 配置
 

@@ -14,7 +14,7 @@ updated: 2023-06-22 00:00:00
 
 Electron是一个js桌面端框架，让html，js 打包为桌面应用成为可能，已经有非常多的应用使用了这门技术，如：vscode，notion，figma，思源笔记等等
 
-![image](https://img.yangcc.top/img/image-20230614231941-kvlx0yu.png)
+![image](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/Snipaste_2024-05-06_15-04-27.png)
 
 ## 一 整体交互形式
 
@@ -26,7 +26,7 @@ Electron是一个js桌面端框架，让html，js 打包为桌面应用成为可
 
 这些都是做不到的，这些都涉及了操作系统的api，那electron是如何做到的呢，我们看下这个图：
 
-![image](https://img.yangcc.top/img/image-20230615002613-0zpv717.png)
+![image](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/Snipaste_2024-05-06_15-04-35.png)
 
 Electron就相当于一个中间层，为js提供了一个曲线访问系统api的能力，做任何和系统有关的操作，都要通过electron
 

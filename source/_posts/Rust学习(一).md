@@ -13,7 +13,7 @@ updated: 2022-03-14 00:00:00
 
 Rust安装极为简单，先下载rustup
 
-![image-20220314220250790](https://img.yangcc.top/img/image-20220314220250790.png)
+![image-20220314220250790](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/image-20220314220250790.png)
 
 之后使用命令下载：
 
@@ -23,7 +23,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 在vscode下载插件 `rust-analyzer`即可快速开发
 
-![image-20220314220452099](https://img.yangcc.top/img/image-20220314220452099.png)
+![image-20220314220452099](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/image-20220314220452099.png)
 
 ## 二 cargo
 

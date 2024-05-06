@@ -39,7 +39,7 @@ updated: 2022-05-14 00:00:00
 
 定义一个字符串hello，其内存结构是这样的
 
-![image.png](https://img.yangcc.top/img/image-20220511222035-ei8rafo.png)
+![image.png](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/Snipaste_2024-05-06_14-59-44.png)
 
 而当将携带此字符串值的变量s1赋值给s2的时候，s1在栈中就不可用,失效了，不同于浅拷贝，这种方式被称为移动（Move）
 
@@ -119,7 +119,7 @@ fn get_lenth(s: &String) -> usize {
 
 * s表示一个指针，这个指针指向另一个指针s1,s1指向堆内存
 
-![image.png](https://img.yangcc.top/img/image-20220511232030-kg9held.png)
+![image.png](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/Snipaste_2024-05-06_15-01-19.png)
 
 而引用的内容，是否可以修改呢？，我们尝试在上面的方法内修改变量，会报如下的错：
 
@@ -244,7 +244,7 @@ fn main(){
 
 字符串切片在内存中的结构，指向堆内存数据的一部分
 
-![image.png](https://img.yangcc.top/img/image-20220514114501-m8cf3p5.png)
+![image.png](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/Snipaste_2024-05-06_15-02-10.png)
 
 改造之前的小例子，使其返回一个字符串切片,字符串切片的类型标识为：&str
 
@@ -271,8 +271,6 @@ fn first_world(s: &String) ->&str{
 ### 字符串字面值
 
 字符串字面值，是什么类型的呢，没错就是切片
-
-![image.png](https://img.yangcc.top/img/image-20220514120104-h08z6ie.png)
 
 ### 将切片作为参数
 

@@ -20,7 +20,7 @@ yay -S conky
 
 在家目录新建一个.conkyrc的文件，写上配置文件即可，效果如下：
 
-![截屏-20220306110328-2560x1600](https://img.yangcc.top/img/截屏-20220306110328-2560x1600.png)
+![截屏-20220306110328-2560x1600](https://img-yangcc.oss-cn-beijing.aliyuncs.com/blog/%E6%88%AA%E5%B1%8F-20220306110328-2560x1600.png)
 
 ## 二 设置开机自启
 
