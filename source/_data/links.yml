@@ -1,8 +1,8 @@
 - links_category: 博客
   has_thumbnail: false
   list: 
-  - name: yueseshili
-    link: https://yueseshili.github.io/
-    description: yueseshili blog
-    avatar: https://img.yangcc.top/avatar/lmq.jpg
+  - name: chalmery
+    link: https://chalmery.github.io/
+    description: chalmery blog
+    avatar: https://img-yangcc.oss-cn-beijing.aliyuncs.com/mine/avatar.jpg
     thumbnail: 预览图（has_thumbnail 为 true 时才需要）
