@@ -23,16 +23,9 @@ updated: 2023-07-15 00:00:00
 ```shell
 jenv <command> [<args>]
 # 命令参考：
-commands   列出所有可用的 jenv 命令
-local       设置或显示本地应用程序特定的 Java 版本
-global     设置或显示全局 Java 版本
-shell      设置或显示 shell 特定的 Java 版本
-rehash      刷新 jenv shims（安装可执行文件后运行此命令）
-version     显示当前Java版本及其来源
-versions    列出 jenv 可用的所有 Java 版本
-which      显示可执行文件的完整路径
-whence     列出包含给定可执行文件的所有 Java 版本
-add         添加 将 JDK 添加到 jenv 中
+list                  列出所有添加的版本
+add name path         添加 将 JDK 添加到 jenv 中
+change name           改变版本为指定名称的jdk
 ```
 
 ## archlinuxjdk
