@@ -6,17 +6,4 @@ comment: true
 ---
 
 
-
-## 作品
-
-* [基于Electron的本地音乐播放器](https://github.com/chalmery/electron-music)
-
-
-## 兴趣爱好
-
-* MineCraft
-* 星露谷物语
-* 编程，主要从事服务端Java开发，会点安卓，JS
-* Linux,喜欢ArchLinux Kde桌面
-* 骑行新手
-* 周杰伦
+人的一生只有两种事情，自己可以控制的，自己不能控制的，我们能做的就是对于确定性的东西努力推进，日积月累，复利成长；对于不能控制的事情顺势而为，活出轻松。
