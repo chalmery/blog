@@ -29,9 +29,6 @@ jobs:
         run: npm install
 
       - name: Generate site
-        env:
-          GITALK_CLIENT_ID: ${{ secrets.GITALK_CLIENT_ID }}
-          GITALK_SECRET: ${{ secrets.GITALK_SECRET }}
         run: npx hexo generate
 
       - name: Setup SSH agent and deploy key
