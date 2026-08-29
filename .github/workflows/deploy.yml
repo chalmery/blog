@@ -42,6 +42,10 @@ jobs:
           echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo "=== 私钥指纹（应与本地一致）==="
+          ssh-keygen -lf ~/.ssh/deploy_key 2>&1 || echo "私钥无效！"
+          echo "=== SSH 认证测试 ==="
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -T git@github.com 2>&1 || true
 
       - name: Configure git identity
         run: |
@@ -51,8 +55,4 @@ jobs:
       - name: Deploy to GitHub Pages
         env:
           GIT_SSH_COMMAND: ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no
-        run: |
-          echo "=== SSH 自检 ==="
-          GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -T git@github.com || true
-          echo "=== 开始部署 ==="
-          npx hexo deploy
+        run: npx hexo deploy
