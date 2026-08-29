@@ -50,5 +50,9 @@ jobs:
 
       - name: Deploy to GitHub Pages
         env:
-          GIT_SSH_COMMAND: ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes
-        run: npx hexo deploy
+          GIT_SSH_COMMAND: ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no
+        run: |
+          echo "=== SSH 自检 ==="
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -T git@github.com || true
+          echo "=== 开始部署 ==="
+          npx hexo deploy
