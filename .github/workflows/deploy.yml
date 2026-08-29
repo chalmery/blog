@@ -34,18 +34,24 @@ jobs:
           GITALK_SECRET: ${{ secrets.GITALK_SECRET }}
         run: npx hexo generate
 
-      - name: Setup SSH key for deploy
+      - name: Setup SSH agent and deploy key
         env:
           DEPLOY_KEY: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
         run: |
           mkdir -p ~/.ssh
           echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          echo "=== 私钥指纹（应与本地一致）==="
-          ssh-keygen -lf ~/.ssh/deploy_key 2>&1 || echo "私钥无效！"
+          echo "=== 私钥指纹 ==="
+          ssh-keygen -lf ~/.ssh/deploy_key 2>&1 || echo "!!! 私钥无效，请检查 Secret 内容 !!!"
+          # 启动 ssh-agent 并加载私钥
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/deploy_key 2>&1
+          ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
           echo "=== SSH 认证测试 ==="
-          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -T git@github.com 2>&1 || true
+          ssh -T git@github.com 2>&1 || true
+          # 把 agent 信息传给后续步骤
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> $GITHUB_ENV
 
       - name: Configure git identity
         run: |
@@ -53,6 +59,4 @@ jobs:
           git config --global user.email "chaochaoycc@gmail.com"
 
       - name: Deploy to GitHub Pages
-        env:
-          GIT_SSH_COMMAND: ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=no
         run: npx hexo deploy
