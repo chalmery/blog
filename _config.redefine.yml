@@ -142,8 +142,8 @@ home_banner:
     smart_backspace: true # Whether to smart backspace
   # Color of home banner text
   text_color:
-    light: "#fff" # light mode
-    dark: "#d1d1b6" # dark mode
+    light: "#000" # light mode
+    dark: "#fff" # dark mode
   # Specific style of the text
   text_style:
     # Title font size
@@ -329,7 +329,7 @@ articles:
   # Article recommendation. Requires nodejieba (npm install nodejieba). Transplanted from hexo-theme-volantis.
   recommendation:
     # Whether to enable article recommendation
-    enable: true
+    enable: false
     # Article recommendation title
     title: 推荐阅读
     # Max number of articles to display
@@ -417,16 +417,34 @@ footer:
 # INJECT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
 inject:
   # Whether to enable inject
-  enable: false
+  enable: true
   # Inject custom head html code
   head:
-    -
-    -
-    # Inject custom footer html code
+    - |
+      <style>
+        .article-header .article-meta-info > .article-date + .article-date {
+          display: none !important;
+        }
+      </style>
+  # Inject custom footer html code
   footer:
-    -
-    -
-      # INJECT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+    - |
+      <script>
+        (() => {
+          const hideUpdatedTime = () => {
+            document.querySelectorAll('.article-copyright-info-container li').forEach((item) => {
+              const label = item.querySelector('strong')?.textContent.trim();
+              if (label?.startsWith('更新于')) item.hidden = true;
+            });
+          };
+          hideUpdatedTime();
+          new MutationObserver(hideUpdatedTime).observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+        })();
+      </script>
+# INJECT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
     # PLUGINS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
