@@ -172,6 +172,8 @@ home_banner:
         url: https://github.com/chalmery
       - icon: bilibili
         url: https://space.bilibili.com/179065852
+      - icon: zhihu
+        url: https://www.zhihu.com/people/24-34-64-32
       - icon: email
         url: chaochaoycc@gmail.com
     # Social links with QR code drawers

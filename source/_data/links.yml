@@ -1,11 +1,1 @@
-- links_category: 博客
-  has_thumbnail: false
-  list: 
-  - name: chalmery
-    link: https://chalmery.github.io/
-    description: chalmery blog
-    avatar: https://img-yangcc.oss-cn-beijing.aliyuncs.com/mine/avatar.jpg
-    thumbnail: 预览图（has_thumbnail 为 true 时才需要）
-  - name: 知乎
-    link: https://www.zhihu.com/people/24-34-64-32
-    description: 我的知乎主页
+[]
