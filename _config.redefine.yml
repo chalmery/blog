@@ -16,7 +16,7 @@ info:
   # Author name
   author: chalmery
   # Site URL
-  url: https://github.com/chalmery
+  url: https://chalmery.github.io
 # BASIC INFORMATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
@@ -208,9 +208,6 @@ navbar:
     Categories:
       path: /categories
       icon: fa-light fa-folder-open
-    拾景:
-      path: /gallery
-      icon: fa-regular fa-images
     About:
       path: /about
       icon: fa-light fa-user
@@ -485,10 +482,6 @@ page_templates:
   friends_column: 2
   # Tags page style
   tags_style: blur # blur, cloud
-  # Masonry page batch size
-  masonry:
-    batch_size: 12
-    initial_batch_size: 24
 # PAGE TEMPLATES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
