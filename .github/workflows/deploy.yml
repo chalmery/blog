@@ -1,4 +1,4 @@
-name: Deploy Blog
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch: # 支持手动触发
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   deploy:
@@ -14,47 +14,44 @@ jobs:
     concurrency:
       group: blog-deploy
       cancel-in-progress: true
-
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Generate site
-        run: npx hexo generate
+      - name: Build site
+        run: npm run build
 
-      - name: Setup SSH agent and deploy key
+      - name: Publish to chalmery.github.io
         env:
           DEPLOY_KEY: ${{ secrets.GH_PAGES_DEPLOY_KEY }}
+          PUBLISH_DIR: ${{ runner.temp }}/chalmery-pages
         run: |
-          mkdir -p ~/.ssh
-          # Secret 存的是 base64 编码的私钥，解码还原多行格式
-          echo "$DEPLOY_KEY" | base64 -d > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          echo "=== 私钥指纹 ==="
-          ssh-keygen -lf ~/.ssh/deploy_key 2>&1 || echo "!!! 私钥无效，请检查 Secret 内容 !!!"
-          # 启动 ssh-agent 并加载私钥
-          eval "$(ssh-agent -s)"
-          ssh-add ~/.ssh/deploy_key 2>&1
-          ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
-          echo "=== SSH 认证测试 ==="
-          ssh -T git@github.com 2>&1 || true
-          # 把 agent 信息传给后续步骤
-          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
-          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> $GITHUB_ENV
+          install -d -m 700 "$RUNNER_TEMP/ssh"
+          echo "$DEPLOY_KEY" | base64 -d > "$RUNNER_TEMP/ssh/deploy_key"
+          chmod 600 "$RUNNER_TEMP/ssh/deploy_key"
+          ssh-keyscan github.com > "$RUNNER_TEMP/ssh/known_hosts" 2>/dev/null
+          export GIT_SSH_COMMAND="ssh -i $RUNNER_TEMP/ssh/deploy_key -o UserKnownHostsFile=$RUNNER_TEMP/ssh/known_hosts"
 
-      - name: Configure git identity
-        run: |
-          git config --global user.name "chalmery"
-          git config --global user.email "chaochaoycc@gmail.com"
+          git clone --depth 1 --branch master git@github.com:chalmery/chalmery.github.io.git "$PUBLISH_DIR"
+          test -d "$PUBLISH_DIR/.git"
+          touch dist/.nojekyll
+          rsync -a --delete --exclude=.git dist/ "$PUBLISH_DIR/"
 
-      - name: Deploy to GitHub Pages
-        run: npx hexo deploy
+          git -C "$PUBLISH_DIR" config user.name "chalmery"
+          git -C "$PUBLISH_DIR" config user.email "chaochaoycc@gmail.com"
+          git -C "$PUBLISH_DIR" add --all
+          if git -C "$PUBLISH_DIR" diff --cached --quiet; then
+            echo "No site changes to publish."
+            exit 0
+          fi
+          git -C "$PUBLISH_DIR" commit -m "Deploy Astro site from ${GITHUB_SHA::7}"
+          git -C "$PUBLISH_DIR" push origin master

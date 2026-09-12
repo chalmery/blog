@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate, getPosts, postUrl } from '../../lib/blog';
+
+const posts = await getPosts();
+const years = Map.groupBy(posts, (post) => post.data.date.getFullYear());
+---
+
+<BaseLayout title="归档">
+  <section class="page-shell narrow">
+    <div class="page-heading">
+      <h1>归档</h1>
+      <p>{posts.length} 篇文章</p>
+    </div>
+    {[...years].map(([year, yearPosts]) => (
+      <section>
+        <h2 class="archive-year">{year}</h2>
+        <ol class="archive-list">
+          {yearPosts.map((post) => (
+            <li>
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date).slice(5)}</time>
+              <a href={postUrl(post)}>{post.data.title}</a>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+  </section>
+</BaseLayout>

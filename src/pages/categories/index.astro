@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { countValues, getPosts } from '../../lib/blog';
+
+const categories = countValues(await getPosts(), 'categories');
+---
+
+<BaseLayout title="分类">
+  <section class="page-shell narrow">
+    <div class="page-heading"><h1>分类</h1><p>{categories.length} 个</p></div>
+    <div class="cloud">
+      {categories.map(([category, count]) => <a href={`/categories/${encodeURIComponent(category)}/`}>{category} <small>{count}</small></a>)}
+    </div>
+  </section>
+</BaseLayout>

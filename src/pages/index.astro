@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import Pagination from '../components/Pagination.astro';
+import { getPosts } from '../lib/blog';
+
+const posts = await getPosts();
+const pageSize = 10;
+const pagePosts = posts.slice(0, pageSize);
+const lastPage = Math.ceil(posts.length / pageSize);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <p class="eyebrow">技术 · 思考 · 生活</p>
+        <h1>在时间经过的地方，种下一些文字。</h1>
+        <p class="hero-copy">这里记录技术，也记录生活；整理已经明白的，探索仍然困惑的。</p>
+      </div>
+      <img class="portrait" src="/avatar.jpg" width="220" height="220" alt="chalmery 的头像" />
+    </div>
+  </section>
+  <section class="section shell">
+    <div class="section-heading">
+      <h2>最近文章</h2>
+      <span>共 {posts.length} 篇</span>
+    </div>
+    <PostList posts={pagePosts} />
+    <Pagination currentPage={1} lastPage={lastPage} />
+  </section>
+</BaseLayout>

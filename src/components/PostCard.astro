@@ -1,0 +1,20 @@
+---
+import type { Post } from '../lib/blog';
+import { formatDate, postUrl, readingTime } from '../lib/blog';
+
+interface Props { post: Post }
+const { post } = Astro.props;
+---
+
+<article class="post-card">
+  <div class="post-meta">
+    <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+    <span>{readingTime(post)} 分钟阅读</span>
+  </div>
+  <h2><a href={postUrl(post)}>{post.data.title}</a></h2>
+  <p class="post-excerpt">{post.data.description ?? (post.body ?? '').replace(/```[\s\S]*?```|<[^>]+>|[#>*_`\[\]()-]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 150)}…</p>
+  <div class="post-taxonomy">
+    {post.data.categories.map((category) => <a href={`/categories/${encodeURIComponent(category)}/`}>{category}</a>)}
+    {post.data.tags.map((tag) => <a class="tag" href={`/tags/${encodeURIComponent(tag)}/`}>#{tag}</a>)}
+  </div>
+</article>
