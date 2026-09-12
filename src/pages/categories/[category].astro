@@ -16,7 +16,7 @@ const { category, posts } = Astro.props;
 ---
 
 <BaseLayout title={`分类：${category}`}>
-  <section class="page-shell">
+  <section class="page-shell shell">
     <div class="page-heading"><h1>{category}</h1><p>{posts.length} 篇文章</p></div>
     <PostList posts={posts} />
   </section>

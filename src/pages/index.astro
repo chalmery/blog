@@ -1,43 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostList from '../components/PostList.astro';
+import Pagination from '../components/Pagination.astro';
 import { getPosts } from '../lib/blog';
 
 const posts = await getPosts();
-const featuredPosts = posts.slice(0, 3);
-const recentPosts = posts.slice(3, 8);
+const pageSize = 10;
+const pagePosts = posts.slice(0, pageSize);
+const lastPage = Math.ceil(posts.length / pageSize);
 ---
 
 <BaseLayout>
-  <section class="home-hero">
-    <div class="home-title">
-      <h1>你好</h1>
-      <a class="rss-icon" href="/rss.xml" aria-label="RSS" title="RSS">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 19h.01M5 11a8 8 0 0 1 8 8M5 5a14 14 0 0 1 14 14" /></svg>
-      </a>
-    </div>
-    <p>这里记录技术，也记录生活；整理已经明白的，探索仍然困惑的。</p>
-    <p>有些文字写给别人，有些写给未来的自己。</p>
-    <div class="social-row">
-      <span>找到我：</span>
-      <a href="https://github.com/chalmery" rel="me external">GitHub</a>
-      <a href="mailto:chaochaoycc@gmail.com">邮箱</a>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <p class="eyebrow">技术 · 思考 · 生活</p>
+        <h1>在时间经过的地方，种下一些文字。</h1>
+        <p class="hero-copy">这里记录技术，也记录生活；整理已经明白的，探索仍然困惑的。</p>
+      </div>
+      <img class="portrait" src="/avatar.jpg" width="220" height="220" alt="chalmery 的头像" />
     </div>
   </section>
-
-  {featuredPosts.length > 0 && (
-    <section class="home-section">
-      <h2 class="section-title">精选文章</h2>
-      <PostList posts={featuredPosts} />
-    </section>
-  )}
-
-  {recentPosts.length > 0 && (
-    <section class="home-section">
-      <h2 class="section-title">最近文章</h2>
-      <PostList posts={recentPosts} />
-    </section>
-  )}
-
-  <div class="all-posts"><a href="/archives/">查看全部文章 →</a></div>
+  <section class="section shell">
+    <div class="section-heading">
+      <h2>最近文章</h2>
+      <span>共 {posts.length} 篇</span>
+    </div>
+    <PostList posts={pagePosts} />
+    <Pagination currentPage={1} lastPage={lastPage} />
+  </section>
 </BaseLayout>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  currentPage: number;
+  lastPage: number;
+}
+const { currentPage, lastPage } = Astro.props;
+const urlFor = (page: number) => page === 1 ? '/' : `/page/${page}/`;
+---
+
+{lastPage > 1 && (
+  <nav class="pagination" aria-label="分页">
+    {currentPage > 1 && <a href={urlFor(currentPage - 1)}>← 更新的文章</a>}
+    <span>第 {currentPage} / {lastPage} 页</span>
+    {currentPage < lastPage && <a href={urlFor(currentPage + 1)}>更早的文章 →</a>}
+  </nav>
+)}

@@ -6,12 +6,10 @@ const categories = countValues(await getPosts(), 'categories');
 ---
 
 <BaseLayout title="分类">
-  <section class="page-shell">
-    <div class="page-heading"><h1>分类</h1><p>按主题浏览文章</p></div>
-    <ul class="category-list">
-      {categories.map(([category, count]) => (
-        <li><a href={`/categories/${encodeURIComponent(category)}/`}>{category}</a><span>{count} 篇</span></li>
-      ))}
-    </ul>
+  <section class="page-shell narrow">
+    <div class="page-heading"><h1>分类</h1><p>{categories.length} 个</p></div>
+    <div class="cloud">
+      {categories.map(([category, count]) => <a href={`/categories/${encodeURIComponent(category)}/`}>{category} <small>{count}</small></a>)}
+    </div>
   </section>
 </BaseLayout>
