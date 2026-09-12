@@ -1,33 +1,38 @@
-import { defineCollection } from 'astro:content';
-import { z } from 'astro/zod';
-import { glob } from 'astro/loaders';
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
+import config from "@/config";
 
-const stringList = z.union([z.string(), z.array(z.string())]).transform((value) =>
-  Array.isArray(value) ? value : [value],
-);
+export const BLOG_PATH = "src/content/posts";
 
-// YAML 会把无时区日期解析为 UTC；旧 Hexo 文章写的是上海本地时间。
-const shanghaiDate = z.preprocess((value) => {
-  if (value instanceof Date) return new Date(value.valueOf() - 8 * 60 * 60 * 1000);
-  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}$/.test(value)) {
-    return new Date(`${value.replace(' ', 'T')}+08:00`);
-  }
-  return value;
-}, z.coerce.date());
+const posts = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: `./${BLOG_PATH}` }),
+  schema: ({ image }) =>
+    z.object({
+      author: z.string().default(config.site.author),
+      pubDatetime: z.date(),
+      modDatetime: z.date().optional().nullable(),
+      title: z.string(),
+      featured: z.boolean().optional(),
+      draft: z.boolean().optional(),
+      categories: z.array(z.string()).default(["未分类"]),
+      tags: z.array(z.string()).default(["others"]),
+      ogImage: image().or(z.string()).optional(),
+      description: z.string(),
+      canonicalURL: z.string().optional(),
+      hideEditPost: z.boolean().optional(),
+      timezone: z.string().optional(),
+    }),
+});
 
-const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+const pages = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/pages" }),
   schema: z.object({
     title: z.string(),
-    date: shanghaiDate,
-    updated: shanghaiDate.optional(),
-    abbrlink: z.union([z.string(), z.number()]).transform(String),
-    categories: stringList.default(['未分类']),
-    tags: stringList.default([]),
-    toc: z.boolean().optional(),
     description: z.string().optional(),
-    draft: z.boolean().default(false),
+    ogImage: z.string().optional(),
+    canonicalURL: z.string().optional(),
   }),
 });
 
-export const collections = { blog };
+export const collections = { posts, pages };
