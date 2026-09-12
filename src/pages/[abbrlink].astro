@@ -24,28 +24,28 @@ const excerpt = post.data.description ?? (post.body ?? '').replace(/```[\s\S]*?`
 
 <BaseLayout title={post.data.title} description={excerpt} type="article">
   <article>
-    <header class="article-header narrow">
-      <p class="eyebrow">{post.data.categories.join(' · ')}</p>
+    <header class="article-header">
       <h1>{post.data.title}</h1>
       <div class="post-meta">
         <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        <span>·</span>
         <span>{readingTime(post)} 分钟阅读</span>
-        {post.data.updated && post.data.updated.valueOf() !== post.data.date.valueOf() && <span>更新于 {formatDate(post.data.updated)}</span>}
+        {post.data.updated && post.data.updated.valueOf() !== post.data.date.valueOf() && <span>· 更新于 {formatDate(post.data.updated)}</span>}
       </div>
-      <div class="post-taxonomy">
-        {post.data.tags.map((tag) => <a class="tag" href={`/tags/${encodeURIComponent(tag)}/`}>#{tag}</a>)}
+      <div class="post-categories">
+        {post.data.categories.map((category) => <a href={`/categories/${encodeURIComponent(category)}/`}>{category}</a>)}
       </div>
     </header>
     {headings.length > 2 && (
-      <details class="narrow article-toc">
+      <details class="article-toc">
         <summary>本文目录</summary>
         <ol>
           {headings.filter(({ depth }) => depth <= 3).map((heading) => <li class={`depth-${heading.depth}`}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
         </ol>
       </details>
     )}
-    <div class="prose narrow"><Content /></div>
-    <nav class="narrow article-nav" aria-label="相邻文章">
+    <div class="prose"><Content /></div>
+    <nav class="article-nav" aria-label="相邻文章">
       {older ? <a href={postUrl(older)}>← {older.data.title}</a> : <span />}
       {newer && <a href={postUrl(newer)}>{newer.data.title} →</a>}
     </nav>

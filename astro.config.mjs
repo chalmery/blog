@@ -6,6 +6,9 @@ export default defineConfig({
   publicDir: './static',
   integrations: [sitemap()],
   markdown: {
-    shikiConfig: { theme: 'github-dark' },
+    shikiConfig: {
+      themes: { light: 'min-light', dark: 'night-owl' },
+      defaultColor: false,
+    },
   },
 });

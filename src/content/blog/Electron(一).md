@@ -10,7 +10,6 @@ abbrlink: 2402782093
 date: 2023-06-22 00:00:00
 updated: 2023-06-22 00:00:00
 ---
-# Electron(一)
 
 Electron是一个js桌面端框架，让html，js 打包为桌面应用成为可能，已经有非常多的应用使用了这门技术，如：vscode，notion，figma，思源笔记等等
 
