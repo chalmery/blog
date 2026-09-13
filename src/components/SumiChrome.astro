@@ -1,0 +1,36 @@
+---
+import config from "@/config";
+---
+
+<footer class="sumi-footer">
+  由 <a href="https://astro.build/">Astro</a> 驱动 · 主题
+  <a href="https://github.com/chalmery/astro-theme-sumi">sumi</a>
+</footer>
+
+<div class="sumi-actions" aria-label="页面工具">
+  {
+    config.features.lightAndDarkMode && (
+      <button id="theme-btn" type="button" aria-label="切换深浅色模式">
+        <span aria-hidden="true">◐</span>
+      </button>
+    )
+  }
+  <button id="back-to-top" type="button" aria-label="回到顶部">
+    <span aria-hidden="true">↑</span>
+  </button>
+</div>
+
+<script>
+  function bindBackToTop() {
+    const button = document.querySelector<HTMLButtonElement>("#back-to-top");
+    if (!button || button.dataset.bound === "true") return;
+
+    button.dataset.bound = "true";
+    button.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  bindBackToTop();
+  document.addEventListener("astro:page-load", bindBackToTop);
+</script>

@@ -1,4 +1,4 @@
-import type { ResolvedAstroPaperConfig } from "@/types/config";
+import type { ResolvedSumiConfig } from "@/types/config";
 import { getAssetPath } from "./withBase";
 
 const publicFiles = import.meta.glob("/public/*", { eager: false });
@@ -18,9 +18,7 @@ function existsInPublic(filename: string): boolean {
  *   otherwise falls back to the generated `/og.png`.
  * - When disabled, requires `public/{site.ogImage}` to exist.
  */
-export function resolveDefaultOgImagePath(
-  config: ResolvedAstroPaperConfig
-): string {
+export function resolveDefaultOgImagePath(config: ResolvedSumiConfig): string {
   const filename = config.site.ogImage;
   if (
     filename.includes("..") ||
@@ -40,7 +38,7 @@ export function resolveDefaultOgImagePath(
 
   if (!existsInPublic(filename)) {
     throw new Error(
-      `AstroPaper: missing public/${filename}. Add that file, or set site.ogImage to an existing file under public/, or enable features.dynamicOgImage to fall back to /og.png.`
+      `Sumi: missing public/${filename}. Add that file, or set site.ogImage to an existing file under public/, or enable features.dynamicOgImage to fall back to /og.png.`
     );
   }
 

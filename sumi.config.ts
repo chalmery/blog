@@ -1,11 +1,10 @@
-import { defineAstroPaperConfig } from "./src/types/config";
+import { defineSumiConfig } from "./src/types/config";
 
-export default defineAstroPaperConfig({
+export default defineSumiConfig({
   site: {
     url: "https://chalmery.github.io/",
     title: "chalmery",
-    description:
-      "这里记录技术，也记录生活；整理已经明白的，探索仍然困惑的。",
+    description: "这里记录技术，也记录生活；整理已经明白的，探索仍然困惑的。",
     author: "chalmery",
     profile: "https://github.com/chalmery",
     ogImage: "avatar.jpg",

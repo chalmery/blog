@@ -1,0 +1,533 @@
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #191919;
+  --accent: #191919;
+  --accent-foreground: #ffffff;
+  --muted: #f7f7f7;
+  --muted-foreground: #747474;
+  --border: #e9e9e9;
+  --sumi-faint: #a6a6a6;
+  --sumi-avatar-background: #171717;
+  --sumi-avatar-text: #ffffff;
+  --sumi-content-width: 1120px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #111111;
+  --foreground: #ececec;
+  --accent: #ececec;
+  --accent-foreground: #151515;
+  --muted: #1b1b1b;
+  --muted-foreground: #a8a8a8;
+  --border: #2d2d2d;
+  --sumi-faint: #747474;
+  --sumi-avatar-background: #ededed;
+  --sumi-avatar-text: #151515;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans SC",
+    "Microsoft YaHei",
+    sans-serif;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+.sumi-home {
+  display: grid;
+  flex: 1;
+  grid-template-columns: minmax(0, 3fr) minmax(200px, 1fr);
+  gap: clamp(3rem, 7vw, 6.5rem);
+  width: min(calc(100% - 4rem), var(--sumi-content-width));
+  margin: 0 auto;
+  padding: clamp(4rem, 9vw, 8rem) 0 5rem;
+}
+
+.sumi-archive {
+  min-width: 0;
+}
+
+.sumi-year-group {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.sumi-year {
+  margin: 0;
+  color: var(--sumi-faint);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.sumi-posts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sumi-post {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.68rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.sumi-post:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.sumi-date {
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sumi-post-title {
+  overflow: hidden;
+  font-family: ui-serif, "Noto Serif SC", "Songti SC", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sumi-post-title a {
+  text-decoration: none;
+}
+
+.sumi-post-title a:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+}
+
+.sumi-profile {
+  align-self: start;
+  text-align: center;
+}
+
+.sumi-avatar-link {
+  display: block;
+  width: min(100%, 8rem);
+  aspect-ratio: 1;
+  margin: 0 auto 1.4rem;
+  overflow: hidden;
+  border-radius: 18%;
+  background: var(--sumi-avatar-background);
+}
+
+.sumi-avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sumi-bio {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+}
+
+.sumi-socials {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  color: var(--muted-foreground);
+}
+
+.sumi-socials > div {
+  gap: 0.45rem;
+}
+
+.sumi-socials a {
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  place-items: center;
+  padding: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.sumi-socials a:hover,
+.sumi-socials a:focus-visible {
+  color: var(--foreground);
+}
+
+.sumi-socials svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sumi-categories {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.sumi-categories ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sumi-categories a {
+  display: inline-block;
+  padding: 0.16rem 0;
+  color: var(--muted-foreground);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.sumi-categories a:hover,
+.sumi-categories a:focus-visible,
+.sumi-categories a[aria-current="true"] {
+  color: var(--foreground);
+}
+
+.sumi-categories a[aria-current="true"] {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 0.28em;
+}
+
+.sumi-article-shell {
+  flex: 1;
+  width: min(calc(100% - 2rem), 700px);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) 0 5rem;
+}
+
+.sumi-back {
+  color: var(--muted-foreground);
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.sumi-article-header h1 {
+  margin: 3rem 0 0.75rem;
+  font-family: ui-serif, "Noto Serif SC", "Songti SC", Georgia, serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+.sumi-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0 0 3.5rem;
+  color: var(--muted-foreground);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.sumi-article-content {
+  max-width: none;
+  font-family: ui-serif, "Noto Serif SC", "Songti SC", Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  overflow-wrap: break-word;
+}
+
+.sumi-article-content h2,
+.sumi-article-content h3,
+.sumi-article-content h4 {
+  margin: 2.75em 0 0.8em;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+.sumi-article-content h2 {
+  font-size: 1.45rem;
+}
+
+.sumi-article-content h3 {
+  font-size: 1.15rem;
+}
+
+.sumi-article-content p,
+.sumi-article-content ul,
+.sumi-article-content ol,
+.sumi-article-content blockquote {
+  margin: 0 0 1.5rem;
+  color: var(--foreground);
+}
+
+.sumi-article-content a {
+  color: inherit;
+  text-decoration-style: dashed;
+  text-underline-offset: 0.22em;
+}
+
+.sumi-article-content img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+.sumi-article-content blockquote {
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--border);
+  color: var(--muted-foreground);
+}
+
+.sumi-article-content :not(pre) > code {
+  padding: 0.12em 0.35em;
+  border-radius: 0.25rem;
+  background: var(--muted);
+  color: var(--foreground);
+  font:
+    0.88em/1.5 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+}
+
+.sumi-article-content pre {
+  position: relative;
+  max-width: 100%;
+  margin: 1.75rem 0;
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--muted) !important;
+  color: var(--foreground);
+  font:
+    0.86rem/1.7 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    "Liberation Mono",
+    monospace;
+  tab-size: 2;
+}
+
+.sumi-article-content pre code {
+  padding: 0;
+  background: transparent;
+  font: inherit;
+}
+
+.sumi-copy-code {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  background: var(--background);
+  color: var(--muted-foreground);
+  font:
+    0.72rem/1.4 ui-sans-serif,
+    system-ui,
+    sans-serif;
+}
+
+.sumi-mermaid {
+  max-width: 100%;
+  margin: 1.75rem 0;
+  padding: 1.25rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--muted);
+  text-align: center;
+}
+
+.sumi-mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.sumi-mermaid-error {
+  color: var(--muted-foreground);
+  font:
+    0.86rem/1.7 ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+  text-align: left;
+  white-space: pre;
+}
+
+.sumi-article-content table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 1.75rem 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.9rem;
+}
+
+.sumi-article-content th,
+.sumi-article-content td {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.sumi-footer {
+  width: min(calc(100% - 4rem), var(--sumi-content-width));
+  margin: auto auto 0;
+  padding: 0.65rem 0 0.85rem;
+  border-top: 1px solid var(--border);
+  color: var(--sumi-faint);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.sumi-footer a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+.sumi-actions {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sumi-actions button {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--background) 90%, transparent);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.sumi-actions button:hover,
+.sumi-actions button:focus-visible {
+  color: var(--foreground);
+  border-color: var(--muted-foreground);
+}
+
+@media (max-width: 760px) {
+  .sumi-home {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    width: min(calc(100% - 2rem), 42rem);
+    padding: 2rem 0 4rem;
+  }
+
+  .sumi-profile {
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0 1.25rem;
+    text-align: left;
+  }
+
+  .sumi-avatar-link {
+    grid-row: 1 / span 2;
+    width: 5.5rem;
+    margin: 0;
+    border-radius: 1rem;
+  }
+
+  .sumi-socials {
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .sumi-categories {
+    grid-column: 1 / -1;
+  }
+
+  .sumi-categories ul {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .sumi-year-group {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .sumi-post {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .sumi-article-shell {
+    padding-top: 2rem;
+  }
+
+  .sumi-article-header h1 {
+    margin-top: 2rem;
+  }
+
+  .sumi-article-meta {
+    margin-bottom: 2.5rem;
+  }
+
+  .sumi-article-content {
+    font-size: 1rem;
+  }
+
+  .sumi-article-content pre {
+    margin-inline: -0.25rem;
+    padding: 1rem;
+  }
+
+  .sumi-footer {
+    width: min(calc(100% - 2rem), var(--sumi-content-width));
+    padding-right: 5rem;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
