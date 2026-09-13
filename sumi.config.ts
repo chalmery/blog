@@ -30,6 +30,16 @@ export default defineSumiConfig({
   socials: [
     { name: "github", url: "https://github.com/chalmery" },
     { name: "mail", url: "mailto:chaochaoycc@gmail.com" },
+    {
+      name: "zhihu",
+      url: "https://www.zhihu.com/people/24-34-64-32",
+      linkTitle: "在知乎关注 chalmery",
+    },
+    {
+      name: "x",
+      url: "https://x.com/chalmery",
+      linkTitle: "在 X 关注 chalmery",
+    },
   ],
   shareLinks: [],
 });
