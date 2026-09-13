@@ -12,6 +12,8 @@ const DEFAULT_OG_IMAGE = "default-og.jpg";
 const config: ResolvedSumiConfig = {
   site: {
     ...userConfig.site,
+    avatar: userConfig.site.avatar ?? "/avatar.jpg",
+    favicon: userConfig.site.favicon ?? "/favicon.svg",
     ogImage: userConfig.site.ogImage ?? DEFAULT_OG_IMAGE,
     lang: userConfig.site.lang ?? "en",
     timezone: userConfig.site.timezone ?? "UTC",

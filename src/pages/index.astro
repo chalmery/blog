@@ -7,7 +7,6 @@ import SumiChrome from "@/components/SumiChrome.astro";
 import Layout from "@/layouts/Layout.astro";
 import config from "@/config";
 import { getPostUrl } from "@/utils/getPostPaths";
-import { getAssetPath } from "@/utils/withBase";
 import { postFilter } from "@/utils/postFilter";
 
 const locale = Astro.currentLocale ?? config.site.lang;
@@ -87,7 +86,7 @@ const rssPath = getRelativeLocaleUrl(locale, "rss.xml");
       >
         <img
           class="sumi-avatar"
-          src={getAssetPath("avatar.jpg")}
+          src={config.site.avatar}
           width="200"
           height="200"
           alt={config.site.author}

@@ -4,9 +4,11 @@ export default defineSumiConfig({
   site: {
     url: "https://chalmery.github.io/",
     title: "chalmery",
-    description: "这里记录技术，也记录生活；整理已经明白的，探索仍然困惑的。",
+    description: "风物长宜放眼量，熬过寒冬便是春。",
     author: "chalmery",
     profile: "https://github.com/chalmery",
+    avatar: "https://img-yangcc.oss-cn-beijing.aliyuncs.com/mine/avatar.jpg",
+    favicon: "https://img-yangcc.oss-cn-beijing.aliyuncs.com/mine/coffee.svg",
     ogImage: "avatar.jpg",
     lang: "zh",
     timezone: "Asia/Shanghai",

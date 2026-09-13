@@ -53,7 +53,7 @@ flowchart LR
 
 ## 配置
 
-站点标题、简介、作者、时区和社交链接集中在 `sumi.config.ts`。头像文件为 `public/avatar.jpg`，主题样式位于 `src/styles/sumi.css`。
+站点标题、简介、作者、头像、favicon、时区和社交链接集中在 `sumi.config.ts`，主题样式位于 `src/styles/sumi.css`。
 
 ## 部署
 

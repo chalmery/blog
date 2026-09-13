@@ -9,6 +9,10 @@ interface SiteConfig {
   author: string;
   /** Author profile URL (used in structured data) */
   profile?: string;
+  /** Profile avatar URL shown on the home page */
+  avatar?: string;
+  /** Browser favicon URL */
+  favicon?: string;
   /** Fallback OG image filename in /public, e.g. "og.jpg" */
   ogImage?: string;
   /** HTML lang attribute, defaults to "en" */
@@ -109,6 +113,8 @@ type ResolvedSiteConfig = Required<
     | "title"
     | "description"
     | "author"
+    | "avatar"
+    | "favicon"
     | "lang"
     | "timezone"
     | "dir"
