@@ -1,18 +1,31 @@
-import kebabcase from "lodash.kebabcase";
-import slugify from "slugify";
-
-const hasNonLatin = (str: string): boolean => /[^\x00-\x7F]/.test(str);
+/**
+ * Create a readable, stable slug without framework-specific dependencies.
+ * Unicode letters and numbers are preserved; punctuation and whitespace become hyphens.
+ */
+export const slugifyStr = (str: string): string =>
+  str
+    .normalize("NFKC")
+    .trim()
+    .toLocaleLowerCase("zh-CN")
+    .replace(/[’']/gu, "")
+    .replace(/[^\p{Letter}\p{Number}]+/gu, "-")
+    .replace(/^-+|-+$/gu, "");
 
 /**
- * Slugify a string using a hybrid approach:
- * - Latin strings: slugify (e.g. "E2E Testing" → "e2e-testing")
- * - Strings with non-Latin chars: lodash.kebabcase (preserves non-Latin chars)
+ * Convert a post filename into a short decimal permalink.
+ * FNV-1a is deterministic, dependency-free and works on the UTF-8 title bytes.
  */
-export const slugifyStr = (str: string): string => {
-  if (hasNonLatin(str)) {
-    return kebabcase(str);
+export const hashSlug = (str: string): string => {
+  const normalized = str.normalize("NFKC").trim().toLocaleLowerCase("zh-CN");
+  const bytes = new TextEncoder().encode(normalized);
+  let hash = 0x811c9dc5;
+
+  for (const byte of bytes) {
+    hash ^= byte;
+    hash = Math.imul(hash, 0x01000193);
   }
-  return slugify(str, { lower: true });
+
+  return (hash >>> 0).toString(10);
 };
 
 export const slugifyAll = (arr: string[]) => arr.map(str => slugifyStr(str));
