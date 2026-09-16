@@ -172,9 +172,27 @@ const homePath = getRelativeLocaleUrl(locale, "");
       });
     }
 
+    function openExternalLinksInNewTabs() {
+      const links = document.querySelectorAll<HTMLAnchorElement>(
+        ".sumi-article-content a[href]"
+      );
+
+      links.forEach(link => {
+        const url = new URL(link.href, window.location.href);
+        const isExternal =
+          (url.protocol === "http:" || url.protocol === "https:") &&
+          url.origin !== window.location.origin;
+
+        if (!isExternal) return;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      });
+    }
+
     function initArticleEnhancements() {
       void renderMermaid();
       bindCopyButtons();
+      openExternalLinksInNewTabs();
     }
 
     initArticleEnhancements();
