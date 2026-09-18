@@ -3,6 +3,8 @@ interface SiteConfig {
   url: string;
   /** Blog title shown in header and meta tags */
   title: string;
+  /** Optional parent website linked from the blog index */
+  mainSiteUrl?: string;
   /** Short description used in SEO meta and RSS feed */
   description: string;
   /** Default post author name */
@@ -121,7 +123,7 @@ type ResolvedSiteConfig = Required<
     | "ogImage"
   >
 > &
-  Pick<SiteConfig, "profile" | "googleVerification">;
+  Pick<SiteConfig, "profile" | "googleVerification" | "mainSiteUrl">;
 
 export interface ResolvedSumiConfig {
   site: ResolvedSiteConfig;

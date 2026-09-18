@@ -2,7 +2,7 @@
 
 基于 [Astro](https://astro.build/) 构建的个人博客，使用 [Sumi](https://github.com/chalmery/astro-theme-sumi) 主题。
 
-首页以年份归档为主轴，侧栏集中展示个人简介、社交链接与文章分类。支持深浅色模式、响应式布局、Shiki 代码高亮和 Mermaid 图表。
+首页采用居中单栏布局，年份位于文章列表左侧，文章按时间倒序排列并完整展示标题与日期。支持深浅色模式、响应式布局、Shiki 代码高亮和 Mermaid 图表。
 
 ## 本地开发
 
@@ -53,7 +53,7 @@ flowchart LR
 
 ## 配置
 
-站点标题、简介、作者、头像、favicon、时区和社交链接集中在 `sumi.config.ts`，主题样式位于 `src/styles/sumi.css`。
+站点标题、主站入口（`site.mainSiteUrl`）、简介、作者、favicon 和时区等配置集中在 `sumi.config.ts`，主题样式位于 `src/styles/sumi.css`。
 
 ## 部署
 

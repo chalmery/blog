@@ -1,8 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
-import Socials from "@/components/Socials.astro";
 import SumiChrome from "@/components/SumiChrome.astro";
 import Layout from "@/layouts/Layout.astro";
 import config from "@/config";
@@ -36,13 +33,20 @@ const yearOf = (date: Date) =>
 const shortDate = (date: Date) =>
   shortDateFormatter.format(date).replace("/", "-");
 const years = [...new Set(posts.map(post => yearOf(post.data.pubDatetime)))];
-const categories = [...new Set(posts.flatMap(post => post.data.categories))];
-const homePath = getRelativeLocaleUrl(locale, "");
-const rssPath = getRelativeLocaleUrl(locale, "rss.xml");
 ---
 
 <Layout>
   <main class="sumi-home" id="main-content">
+    <header class="sumi-home-header">
+      {
+        config.site.mainSiteUrl && (
+          <a class="sumi-main-site" href={config.site.mainSiteUrl}>
+            <span aria-hidden="true">←</span> 主站
+          </a>
+        )
+      }
+    </header>
+
     <section class="sumi-archive" aria-label="文章列表">
       {
         years.map(year => (
@@ -54,22 +58,20 @@ const rssPath = getRelativeLocaleUrl(locale, "rss.xml");
               {posts
                 .filter(post => yearOf(post.data.pubDatetime) === year)
                 .map(post => (
-                  <li
-                    class="sumi-post"
-                    data-categories={JSON.stringify(post.data.categories)}
-                  >
-                    <time
-                      class="sumi-date"
-                      datetime={post.data.pubDatetime.toISOString()}
-                      title={fullDateFormatter.format(post.data.pubDatetime)}
+                  <li class="sumi-post">
+                    <a
+                      class="sumi-post-link"
+                      href={getPostUrl(post.id, post.filePath, locale)}
                     >
-                      {shortDate(post.data.pubDatetime)}
-                    </time>
-                    <span class="sumi-post-title">
-                      <a href={getPostUrl(post.id, post.filePath, locale)}>
-                        {post.data.title}
-                      </a>
-                    </span>
+                      <span class="sumi-post-title">{post.data.title}</span>
+                      <time
+                        class="sumi-date"
+                        datetime={post.data.pubDatetime.toISOString()}
+                        title={fullDateFormatter.format(post.data.pubDatetime)}
+                      >
+                        {shortDate(post.data.pubDatetime)}
+                      </time>
+                    </a>
                   </li>
                 ))}
             </ol>
@@ -77,116 +79,7 @@ const rssPath = getRelativeLocaleUrl(locale, "rss.xml");
         ))
       }
     </section>
-
-    <aside class="sumi-profile" aria-label="个人信息">
-      <a
-        class="sumi-avatar-link"
-        href={homePath}
-        aria-label="首页，显示全部文章"
-      >
-        <img
-          class="sumi-avatar"
-          src={config.site.avatar}
-          width="200"
-          height="200"
-          alt={config.site.author}
-        />
-      </a>
-
-      <p class="sumi-bio">{config.site.description}</p>
-
-      <nav class="sumi-socials" aria-label="社交媒体">
-        <Socials />
-        <a href={rssPath} aria-label="RSS" title="RSS">
-          <IconRss aria-hidden="true" />
-        </a>
-      </nav>
-
-      <nav class="sumi-categories" aria-label="文章分类">
-        <ul>
-          {
-            categories.map(category => (
-              <li>
-                <a
-                  href={`#${encodeURIComponent(category)}`}
-                  data-filter={category}
-                >
-                  {category}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <p class="sr-only" id="filter-status" aria-live="polite"></p>
-    </aside>
   </main>
 
   <SumiChrome />
 </Layout>
-
-<script>
-  function initArchiveFilter() {
-    const filterLinks =
-      document.querySelectorAll<HTMLAnchorElement>("[data-filter]");
-    const posts = document.querySelectorAll<HTMLElement>(
-      ".sumi-post[data-categories]"
-    );
-    const yearGroups =
-      document.querySelectorAll<HTMLElement>(".sumi-year-group");
-    const filterStatus = document.querySelector<HTMLElement>("#filter-status");
-
-    function showCategory(selected: string) {
-      let visibleCount = 0;
-
-      posts.forEach(post => {
-        const categories = JSON.parse(
-          post.dataset.categories ?? "[]"
-        ) as string[];
-        const matches = !selected || categories.includes(selected);
-        post.hidden = !matches;
-        if (matches) visibleCount += 1;
-      });
-
-      yearGroups.forEach(group => {
-        group.hidden = !group.querySelector(".sumi-post:not([hidden])");
-      });
-
-      filterLinks.forEach(link => {
-        link.toggleAttribute("aria-current", link.dataset.filter === selected);
-      });
-
-      if (filterStatus) {
-        filterStatus.textContent = selected
-          ? `${selected}：${visibleCount} 篇文章`
-          : `全部：${visibleCount} 篇文章`;
-      }
-    }
-
-    filterLinks.forEach(link => {
-      if (link.dataset.bound === "true") return;
-      link.dataset.bound = "true";
-      link.addEventListener("click", () =>
-        showCategory(link.dataset.filter ?? "")
-      );
-    });
-
-    const applyHash = () => {
-      const selected = decodeURIComponent(location.hash.slice(1));
-      showCategory(
-        [...filterLinks].some(link => link.dataset.filter === selected)
-          ? selected
-          : ""
-      );
-    };
-
-    applyHash();
-    if (document.body.dataset.sumiHashBound !== "true") {
-      document.body.dataset.sumiHashBound = "true";
-      window.addEventListener("hashchange", applyHash);
-    }
-  }
-
-  initArchiveFilter();
-  document.addEventListener("astro:page-load", initArchiveFilter);
-</script>

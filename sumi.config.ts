@@ -4,6 +4,7 @@ export default defineSumiConfig({
   site: {
     url: "https://chalmery.github.io/",
     title: "chalmery",
+    mainSiteUrl: "https://chalmery.com/",
     description: "风物长宜放眼量，熬过寒冬便是春。",
     author: "chalmery",
     profile: "https://github.com/chalmery",
